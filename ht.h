@@ -459,8 +459,11 @@ void HashTable<K,V,Prober,Hash,KEqual>::resize()
     for (size_t i = 0; i < old.size(); i++)
     {
       if (old[i] != nullptr)
+      {
         if (!old[i]->deleted)
           insert(old[i]->item);
+        delete old[i];
+      }
     }
 }
 
